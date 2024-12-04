@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Light and Dark</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper-->
+		<div id="wrapper">
+
+			<!-- Nav -->
+			<nav id="nav">
+				<a href="index.html" class="icon solid fa-home" style="color: hwb(261 1% 82%);"><span>Home</span></a>
+				<a href="index.html#skills" class="icon solid fa-crosshairs" style="color: hwb(261 1% 82%);"><span>Work</span></a>
+				<a href="index.html#work" class="icon solid fa-folder" style="color: hwb(261 1% 82%);"><span>Work</span></a>
+				<a href="index.html#showreels" class="icon solid fa-film" style="color: hwb(261 1% 82%);"><span>Showreels</span></a>
+				<a href="https://www.linkedin.com/in/tung-lam-775a68299/" class="icon brands fa-linkedin" 
+				style="color: hwb(261 1% 82%);"><span>LinkedIn</span></a>
+			</nav>
+
+			<!-- Main -->
+			<div id="main">
+				<!-- Work -->
+				<article id="work" class="panel">
+					<header>
+						<h2>Light and Dark</h2>
+					</header>
+
+					<h3>Full Gameplay</h3>
+					<section>
+						<div class="row">
+							<div class="col-12 col-12-medium col-12-small">
+								<video class="image fit" controls>
+									<source src="videos/LDGJGameplay.mp4" type="video/mp4">
+								</video>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>The Process</h3>
+						<p>
+							In this game jam I collaborated with a fellow student who was proficient in 3d modelling unlike 
+							myself and so I was in charge of making the mechanics, putting together the level, and exporting the 
+							package in Unity. (The platform model I got from Sketchfab and was actually a dock but I re-arranged 
+							parts of it to make long and short platform prefabs)
+						</p>
+						<div class="row">
+							<div class="col-6 col-6-medium col-12-small">
+								<p>
+									<br> <br>
+									We collaborated on an idea where you somehow find yourself in a pitch black cave where you 
+									will need to scale an abandoned mineshaft to reach the light at the top of the cave. 
+									<br> <br>
+									There is a lamp lying next to you, when you pick up the lamp, its fuel depletes overtime, 
+									making the area of how much you can see smaller and smaller. You'll have to refill the lamp 
+									at oil refill points on the path towards the light in order to escape the cave.
+								</p>
+							</div>
+							<div class="col-6 col-6-medium col-12-small">
+								<a class="image fit"><img src="images/LDGJGameplayImage.png" alt=""></a>
+							</div>
+							<div class="col-12 col-6-medium col-12-small">
+								<p>
+									I've made this a first person, 3d platformer which works with the lamp mechanic as the player
+									has to jump across platforms from the abandoned mineshaft while being wary of the time limit 
+									they have for their visibility of the platform they have to jump to next.
+									<a class="image fit"><img src="images/LDGJLightingScene.png" alt=""></a>
+									For usual Unity projects, you cant get complete darkness even if you disable all of the lights 
+									in the scene, there is still some light bleeding in somehow.
+									<br>
+									I wanted my game to have complete darkness when the lamp has no light so the player can't see 
+									the next platform they need to jump to so they are dependent on the lamp light and keeping it up.
+								</p>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a class="image fit"><img src="images/LDGJLightingSetting.png" alt=""></a>
+							</div>
+							<div class="col-8 col-6-medium col-12-small">
+								<p>
+									I made my project in Unity's Universal Render Pipeline which as more settings in controlling 
+									how the game looks than in the standard render pipeline. 
+									<a class="image fit"><img src="images/LDGJLightingInspector.png" alt=""></a>
+								</p>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<p>
+									In the environment tab in the lighting settings under rendering: <br>
+									- I set the skybox material to none <br>
+									- I set the intensity multiplier to zero <br>
+									- I turned the real-time shadows and ambient colour to black
+								</p>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a class="image fit"><img src="images/LDGJCameraInspector.png" alt=""></a>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<p>
+									These settings made the objects in the scene turn dark but the skybox was only turned a dull 
+									blue colour by these settings and not pitch black. I then went to the camera components in 
+									the scene's main camera and set the background type from skybox too Uninitiated in the 
+									environment section of the camera component.
+									<br> <br> <br> <br>
+									With these settings, it effectively made the scene pitch black without any light sources.
+								</p>
+							</div>
+							<div class="col-12 col-6-medium col-12-small">
+								<h3>The following scrips are the scripts that control the main mechanics of the game.</h3>
+								<p>
+									Script to control the mechanics of the lamp and the oil / light depletion mechanic:
+								</p>
+							</div>
+							<div class="col-7 col-6-medium col-12-small">								
+								<a class="image fit"><img src="images/LDGJLampScript.png" alt=""></a>
+							</div>
+							<div class="col-5 col-6-medium col-12-small">
+								<p>
+									With the way I'd made the the oil depleting system, it depletes by intervals of 0.5 values 
+									every second. Which means that the player will have a total of 20 seconds to get from oil 
+									refill point to oil refill point to have the most up-time for visibility.
+									<br> <br>
+									However, this may look odd as the range is decreasing in "steps". Initially for this 
+									mechanic, I wanted to use a loop to make the mechanic but the usage of a for loop did not 
+									work for me and I was not confident in using a while loop. 
+									<br> <br> <br> <br> <br> <br> <br> <br> <br>
+									To improve this mechanic, I would find a way to make this mechanic more smooth in 
+									decreasing the range of the lamp light over time.
+								</p>
+							</div>
+							<div class="col-12 col-6-medium col-12-small">
+								<p>
+									Script attached to oil refill points that refills the lamp to its max amount:
+								</p>
+							</div>
+							<div class="col-7 col-6-medium col-12-small">								
+								<a class="image fit"><img src="images/LDGJRefillScript.png" alt=""></a>
+							</div>
+							<div class="col-5 col-6-medium col-12-small">
+								<p>
+									This code only triggers of the lamp game object enters the trigger zone of the oil refill 
+									point instead of triggering from when the player steps on it. This is because it gets the 
+									lamp script that is attached to the lamp game object. This may create issues such as when 
+									the player steps on the oil refill point and expect the oil to refill but the lamp game 
+									object did not end up triggering the oil refill point, this may cause confusion and impair 
+									the player experience.
+									<br> <br> <br> <br> <br> <br>
+									To improve this mechanic, I would make it so that it triggers when the player enters the 
+									trigger zone of the oil refill point.
+								</p>
+							</div>
+						</div>
+					</section>
+				</article>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
